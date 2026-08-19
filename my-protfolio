@@ -7,6 +7,12 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
+        :root { color-scheme: dark; }
+        html { scroll-behavior: smooth; }
+        body { min-width: 320px; }
+        a, button { -webkit-tap-highlight-color: transparent; }
+        :focus-visible { outline: 2px solid #dbeeff; outline-offset: 4px; }
+
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
         /* Hand-drawn style accents */
@@ -169,7 +175,7 @@
 </head>
 <body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden relative selection:bg-primary-container selection:text-on-primary-container">
 <!-- Top Navigation -->
-<header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b border-surface-variant flat no shadows with 1px inner glow border-surface-variant flex justify-between items-center px-margin-site py-stack-sm max-w-7xl mx-auto left-0 right-0">
+<header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b border-surface-variant flat no shadows with 1px inner glow border-surface-variant flex justify-between items-center px-margin-site py-stack-sm max-w-7xl mx-auto left-0 right-0" id="top">
 <div class="font-headline-md text-headline-md font-bold text-on-background dark:text-on-background tracking-tight">
             Sonali TS
         </div>
@@ -180,14 +186,23 @@
 <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-caps text-label-caps uppercase transition-all duration-300" href="#about">About</a>
 <a class="text-on-surface-variant font-medium font-label-caps text-label-caps uppercase hover:text-primary transition-transform hover:scale-105" href="#contact">Contact</a>
 </nav>
-<button class="hidden md:block bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase px-6 py-3 rounded hover-jiggle relative group">
+<a class="hidden md:block bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase px-6 py-3 rounded hover-jiggle relative group" href="mailto:sonali.ts1203@gmail.com?subject=Portfolio%20Enquiry">
             Hire Me
             <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-4/5 h-[2px] bg-outline opacity-0 group-hover:opacity-100 transition-opacity"></span>
-</button>
+</a>
 <!-- Mobile Menu Icon -->
-<button class="md:hidden text-on-background">
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu" class="md:hidden text-on-background" id="menu-toggle" type="button">
 <span class="material-symbols-outlined text-3xl">menu</span>
 </button>
+<div class="hidden absolute top-full left-0 right-0 bg-background border-b border-surface-variant px-margin-site py-4" id="mobile-menu">
+<nav class="flex flex-col gap-4" aria-label="Mobile navigation">
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase hover:text-primary transition-colors" href="#work">Work</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase hover:text-primary transition-colors" href="#projects">Play</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase hover:text-primary transition-colors" href="#about">About</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps uppercase hover:text-primary transition-colors" href="#contact">Contact</a>
+<a class="bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase px-4 py-3 rounded text-center" href="mailto:sonali.ts1203@gmail.com?subject=Portfolio%20Enquiry">Hire Me</a>
+</nav>
+</div>
 </header>
 <!-- Floating Background Doodles -->
 <div class="fixed inset-0 pointer-events-none z-0 opacity-20 hidden md:block">
@@ -199,11 +214,11 @@
 <!-- Main Content Canvas -->
 <main class="relative z-10 pt-32 px-margin-site max-w-7xl mx-auto pb-stack-lg">
 <!-- Hero Section -->
-<section class="min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center gap-stack-lg fade-in-up">
+<section class="min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center gap-stack-lg fade-in-up" id="about">
 <div class="flex-1 flex justify-center relative">
 <!-- Avatar Glow -->
 <div class="absolute inset-0 bg-[#9BA8AB] opacity-20 blur-3xl rounded-full scale-75 animate-pulse"></div>
-<img class="relative z-10 w-full max-w-[500px] h-auto object-contain animate-float drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLt0IDLpkgSnM3DjpMOVXquOm4wk38OaMicGwVdTVrpcX18gATA3-DqiNoPuFu7Tf9BVv-rcrCnp3mTq1QAXSlEBFqO3siVBw3rkoFG6SRcyD5t0A_xJ0N5F0QumZf82grY2sjPG-GtXkR3gEBKY_MewBP1BQ3PFmyr7HKctqdNhGe-_yDPlU6og5tOjscFnDFOseLz7WmBxQK5M7xdessc-o09m0zdgg2vZIYY7izxhV2InQT1vF6p6MeI" style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));"/>
+<img alt="Illustrated developer working at a laptop" class="relative z-10 w-full max-w-[500px] h-auto object-contain animate-float drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLt0IDLpkgSnM3DjpMOVXquOm4wk38OaMicGwVdTVrpcX18gATA3-DqiNoPuFu7Tf9BVv-rcrCnp3mTq1QAXSlEBFqO3siVBw3rkoFG6SRcyD5t0A_xJ0N5F0QumZf82grY2sjPG-GtXkR3gEBKY_MewBP1BQ3PFmyr7HKctqdNhGe-_yDPlU6og5tOjscFnDFOseLz7WmBxQK5M7xdessc-o09m0zdgg2vZIYY7izxhV2InQT1vF6p6MeI" style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));"/>
 <!-- Tape motifs -->
 <div class="absolute top-4 -left-4 w-12 h-4 bg-outline-variant rotate-[-15deg] z-20"></div>
 <div class="absolute bottom-10 -right-4 w-10 h-4 bg-outline-variant rotate-[25deg] z-20"></div>
@@ -230,14 +245,14 @@
 <span class="material-symbols-outlined text-sm">mail</span>
 <span class="font-label-caps text-label-caps">sonali.ts1203@gmail.com</span>
 </a>
-<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="flex items-center gap-2 text-on-surface-variant" title="Add your LinkedIn profile URL">
 <span class="material-symbols-outlined text-sm">link</span>
 <span class="font-label-caps text-label-caps">LinkedIn</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+</span>
+<span class="flex items-center gap-2 text-on-surface-variant" title="Add your GitHub profile URL">
 <span class="material-symbols-outlined text-sm">code</span>
 <span class="font-label-caps text-label-caps">GitHub</span>
-</a>
+</span>
 </div>
 <div class="pt-stack-sm flex flex-wrap gap-4 justify-center md:justify-start">
 <a class="inline-block bg-primary-container text-on-primary-fixed px-8 py-4 font-label-caps text-label-caps uppercase rounded hover-jiggle relative group font-bold" href="#work">
@@ -514,7 +529,7 @@
 <!-- Footer -->
 <footer class="bg-surface-container-lowest dark:bg-surface-container-lowest full-width py-stack-md border-t border-dotted border-outline-variant flat no shadows flex flex-col md:flex-row justify-between items-center w-full px-margin-site gap-stack-sm max-w-7xl mx-auto" id="contact">
 <div class="font-headline-sm text-headline-sm text-on-surface mb-4 md:mb-0">
-            © 2024 Sonali TS — Hand-crafted in the late hours.
+            © <span id="current-year">2026</span> Sonali TS — Hand-crafted in the late hours.
         </div>
 <div class="flex flex-col md:flex-row gap-6 items-center">
 <div class="flex gap-4 text-on-surface-variant font-label-caps text-label-caps">
@@ -526,15 +541,15 @@
 <span class="font-label-caps text-label-caps text-on-surface-variant">Let's Connect:</span>
 <nav class="flex gap-4">
 <!-- Interactions: Social icons rotate 15deg on hover with a squiggly path animation -->
-<a class="text-secondary dark:text-secondary font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-tertiary hover:rotate-12 transition-all group flex items-center justify-center w-8 h-8 rounded hover:bg-surface-variant relative overflow-hidden" href="#">
+<span class="text-secondary dark:text-secondary font-label-caps text-label-caps uppercase text-on-surface-variant flex items-center justify-center w-8 h-8 rounded bg-surface-variant relative overflow-hidden" title="Add your LinkedIn profile URL">
                         in
                         <!-- Squiggle overlay on hover -->
 <div class="absolute inset-0 opacity-0 group-hover:opacity-100 flex items-center justify-center pointer-events-none text-tertiary mix-blend-overlay">~</div>
-</a>
-<a class="text-secondary dark:text-secondary font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-tertiary hover:-rotate-12 transition-all group flex items-center justify-center w-8 h-8 rounded hover:bg-surface-variant relative overflow-hidden" href="#">
+</span>
+<span class="text-secondary dark:text-secondary font-label-caps text-label-caps uppercase text-on-surface-variant flex items-center justify-center w-8 h-8 rounded bg-surface-variant relative overflow-hidden" title="Add your GitHub profile URL">
                         gh
                          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 flex items-center justify-center pointer-events-none text-tertiary mix-blend-overlay">~</div>
-</a>
+</span>
 </nav>
 </div>
 </div>
@@ -542,17 +557,43 @@
 <!-- Simple Intersection Observer for scroll animations -->
 <script>
         document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.querySelector('#menu-toggle');
+            const mobileMenu = document.querySelector('#mobile-menu');
+            const currentYear = document.querySelector('#current-year');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+
+            menuToggle?.addEventListener('click', () => {
+                const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', String(!isOpen));
+                menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+                mobileMenu?.classList.toggle('hidden', isOpen);
+            });
+
+            mobileMenu?.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    menuToggle?.setAttribute('aria-expanded', 'false');
+                    menuToggle?.setAttribute('aria-label', 'Open navigation menu');
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            if (prefersReducedMotion) {
+                document.querySelectorAll('.fade-in-up').forEach((element) => element.classList.add('visible'));
+                return;
+            }
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.1 });
 
-            document.querySelectorAll('.fade-in-up').forEach((el) => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.fade-in-up').forEach((element) => observer.observe(element));
         });
     </script>
 </body></html>
