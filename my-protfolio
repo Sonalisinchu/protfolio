@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sonali TS - Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+        /* Hand-drawn style accents */
+        .sketch-border {
+            border: 2px solid #253745;
+            border-radius: 4px 8px 3px 6px / 6px 3px 8px 4px; /* Slight organic irregularity */
+            box-shadow: inset 0 0 0 1px #253745;
+        }
+
+        .doodle-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .doodle-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,5 Q25,0 50,5 T100,5' fill='none' stroke='%23ccd0cf' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 100% 100%;
+            transform: rotate(-1deg);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes jiggle {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+            75% { transform: rotate(-1deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .hover-jiggle:hover { animation: jiggle 0.3s ease-in-out; }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #07151c; }
+        ::-webkit-scrollbar-thumb { background: #253745; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4a5c6a; }
+
+        /* Grid Background Pattern */
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, #11212d 1px, transparent 1px),
+                linear-gradient(to bottom, #11212d 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#25323a",
+                        "on-background": "#d6e5ef",
+                        "secondary-fixed": "#d8e5e8",
+                        "secondary": "#bcc9cc",
+                        "on-tertiary-container": "#495b69",
+                        "on-primary-container": "#545958",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#434847",
+                        "surface-container-high": "#1e2c33",
+                        "on-surface": "#d6e5ef",
+                        "on-secondary-fixed": "#111d20",
+                        "on-secondary-fixed-variant": "#3d494c",
+                        "background": "#07151c",
+                        "tertiary-container": "#bfd2e2",
+                        "on-tertiary-fixed": "#0a1d29",
+                        "on-surface-variant": "#c3c7c6",
+                        "surface-container": "#142129",
+                        "surface-dim": "#07151c",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#bcc9cc",
+                        "on-error": "#690005",
+                        "primary-container": "#ccd0cf",
+                        "surface-tint": "#c3c7c6",
+                        "surface-container-low": "#0f1d25",
+                        "tertiary-fixed": "#d2e5f6",
+                        "outline": "#8d9191",
+                        "secondary-container": "#3f4b4e",
+                        "inverse-surface": "#d6e5ef",
+                        "surface-variant": "#29373e",
+                        "surface": "#07151c",
+                        "on-secondary": "#263235",
+                        "on-primary": "#2d3131",
+                        "tertiary-fixed-dim": "#b6c9d9",
+                        "on-tertiary": "#20323f",
+                        "on-primary-fixed-variant": "#434847",
+                        "on-primary-fixed": "#181c1c",
+                        "tertiary": "#dbeeff",
+                        "inverse-primary": "#5b5f5f",
+                        "primary": "#e8eceb",
+                        "surface-container-lowest": "#031017",
+                        "surface-bright": "#2d3b43",
+                        "surface-container-highest": "#29373e",
+                        "on-secondary-container": "#aebbbe",
+                        "primary-fixed-dim": "#c3c7c6",
+                        "on-tertiary-fixed-variant": "#374956",
+                        "primary-fixed": "#dfe3e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-md": "32px",
+                        "margin-site": "clamp(24px, 5vw, 80px)",
+                        "unit": "4px",
+                        "stack-lg": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Bricolage Grotesque", "sans-serif"],
+                        "headline-lg": ["Bricolage Grotesque", "sans-serif"],
+                        "body-lg": ["Hanken Grotesk", "sans-serif"],
+                        "headline-lg-mobile": ["Bricolage Grotesque", "sans-serif"],
+                        "body-md": ["Hanken Grotesk", "sans-serif"],
+                        "label-caps": ["Space Mono", "monospace"],
+                        "headline-md": ["Bricolage Grotesque", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["72px", { "lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden relative selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b border-surface-variant flat no shadows with 1px inner glow border-surface-variant flex justify-between items-center px-margin-site py-stack-sm max-w-7xl mx-auto left-0 right-0">
+<div class="font-headline-md text-headline-md font-bold text-on-background dark:text-on-background tracking-tight">
+            Sonali TS
+        </div>
+<nav class="hidden md:flex gap-stack-md">
+<!-- Active state: About (since this is a portfolio homepage, About is a reasonable default active state if we must pick one, or Work) -->
+<a class="text-on-surface-variant font-medium font-label-caps text-label-caps uppercase hover:text-primary transition-transform hover:scale-105" href="#work">Work</a>
+<a class="text-on-surface-variant font-medium font-label-caps text-label-caps uppercase hover:text-primary transition-transform hover:scale-105" href="#projects">Play</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-caps text-label-caps uppercase transition-all duration-300" href="#about">About</a>
+<a class="text-on-surface-variant font-medium font-label-caps text-label-caps uppercase hover:text-primary transition-transform hover:scale-105" href="#contact">Contact</a>
+</nav>
+<button class="hidden md:block bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase px-6 py-3 rounded hover-jiggle relative group">
+            Hire Me
+            <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-4/5 h-[2px] bg-outline opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</button>
+<!-- Mobile Menu Icon -->
+<button class="md:hidden text-on-background">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</header>
+<!-- Floating Background Doodles -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-20 hidden md:block">
+<span class="material-symbols-outlined absolute top-32 left-10 text-4xl animate-float" style="animation-delay: 0s;">code</span>
+<span class="material-symbols-outlined absolute top-1/4 right-20 text-3xl animate-float" style="animation-delay: 1s;">terminal</span>
+<span class="material-symbols-outlined absolute top-1/2 left-24 text-5xl animate-float" style="animation-delay: 2s;">memory</span>
+<span class="material-symbols-outlined absolute bottom-32 right-32 text-4xl animate-float" style="animation-delay: 0.5s;">data_object</span>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-32 px-margin-site max-w-7xl mx-auto pb-stack-lg">
+<!-- Hero Section -->
+<section class="min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center gap-stack-lg fade-in-up">
+<div class="flex-1 flex justify-center relative">
+<!-- Avatar Glow -->
+<div class="absolute inset-0 bg-[#9BA8AB] opacity-20 blur-3xl rounded-full scale-75 animate-pulse"></div>
+<img class="relative z-10 w-full max-w-[500px] h-auto object-contain animate-float drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/AP1WRLt0IDLpkgSnM3DjpMOVXquOm4wk38OaMicGwVdTVrpcX18gATA3-DqiNoPuFu7Tf9BVv-rcrCnp3mTq1QAXSlEBFqO3siVBw3rkoFG6SRcyD5t0A_xJ0N5F0QumZf82grY2sjPG-GtXkR3gEBKY_MewBP1BQ3PFmyr7HKctqdNhGe-_yDPlU6og5tOjscFnDFOseLz7WmBxQK5M7xdessc-o09m0zdgg2vZIYY7izxhV2InQT1vF6p6MeI" style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));"/>
+<!-- Tape motifs -->
+<div class="absolute top-4 -left-4 w-12 h-4 bg-outline-variant rotate-[-15deg] z-20"></div>
+<div class="absolute bottom-10 -right-4 w-10 h-4 bg-outline-variant rotate-[25deg] z-20"></div>
+</div>
+<div class="flex-1 text-center md:text-left space-y-stack-sm relative z-10">
+<h1 class="font-display-lg text-display-lg md:text-[96px] text-primary-container leading-none doodle-underline inline-block">
+                    Sonali TS
+                </h1>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mt-stack-md">
+                    AI/ML Engineer &amp;<br/>Full-Stack Developer
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto md:mx-0 font-medium">
+                    Final-Year B.E. CSE (AI &amp; ML) Student, PES College of Engineering.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto md:mx-0">
+                    Backend-focused builder who has designed and integrated REST APIs, ML pipelines, and data-driven dashboards for real-world products. Comfortable with core DSA, SQL, and cross-functional teamwork; has led national-level hackathons and technical events.
+                </p>
+<div class="flex flex-wrap gap-4 justify-center md:justify-start pt-2">
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors" href="tel:+919964308682">
+<span class="material-symbols-outlined text-sm">phone</span>
+<span class="font-label-caps text-label-caps">+91-9964308682</span>
+</a>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors" href="mailto:sonali.ts1203@gmail.com">
+<span class="material-symbols-outlined text-sm">mail</span>
+<span class="font-label-caps text-label-caps">sonali.ts1203@gmail.com</span>
+</a>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">link</span>
+<span class="font-label-caps text-label-caps">LinkedIn</span>
+</a>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">code</span>
+<span class="font-label-caps text-label-caps">GitHub</span>
+</a>
+</div>
+<div class="pt-stack-sm flex flex-wrap gap-4 justify-center md:justify-start">
+<a class="inline-block bg-primary-container text-on-primary-fixed px-8 py-4 font-label-caps text-label-caps uppercase rounded hover-jiggle relative group font-bold" href="#work">
+                        View Projects
+                        <!-- Rough underline hover effect -->
+<div class="absolute bottom-1 left-2 right-2 h-1 bg-outline-variant hidden group-hover:block"></div>
+</a>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-outline-variant to-transparent my-stack-lg"></div>
+<!-- Education Section -->
+<section class="py-stack-md fade-in-up" id="education">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                Education
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="bg-[#11212D] sketch-border p-stack-sm hover:-translate-y-1 transition-transform duration-300 relative group">
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">P.E.S College of Engineering, Mandya</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-1">B.E. CSE AI &amp; ML, 3rd year</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">8.1 CGPA</p>
+<div class="absolute bottom-stack-sm right-stack-sm font-label-caps text-label-caps text-secondary opacity-50 group-hover:opacity-100 transition-opacity">
+                        2023-2027
+                    </div>
+</div>
+<div class="bg-[#11212D] sketch-border p-stack-sm hover:-translate-y-1 transition-transform duration-300 relative group">
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">BGS PU College, Mysuru</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-1">Pre-University PCMC</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">92.3%</p>
+<div class="absolute bottom-stack-sm right-stack-sm font-label-caps text-label-caps text-secondary opacity-50 group-hover:opacity-100 transition-opacity">
+                        2021-2022
+                    </div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-outline-variant to-transparent my-stack-lg"></div>
+<!-- Experience Timeline -->
+<section class="py-stack-md fade-in-up" id="work">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">work</span>
+                Experience
+            </h3>
+<div class="relative pl-8 border-l-2 border-dashed border-outline-variant space-y-stack-md">
+<!-- Item 1 -->
+<div class="relative">
+<!-- Timeline dot (ink blot style) -->
+<div class="absolute -left-[41px] top-2 w-5 h-5 bg-[#06141B] rounded-full border-4 border-primary-container"></div>
+<div class="bg-[#06141B] sketch-border p-stack-sm hover:bg-surface-container-low transition-colors duration-300">
+<div class="flex flex-wrap justify-between items-start mb-2 gap-2">
+<div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Software Developer Intern</h4>
+<span class="font-label-caps text-label-caps text-secondary inline-block mt-1">RNSINONE Pvt Ltd</span>
+</div>
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full border border-outline-variant">
+                                May 2026 - Oct 2026
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+                            Developed and maintained robust full-stack solutions. Collaborated with design and backend teams to implement seamless user experiences. Designed REST APIs, built scalable databases, and improved application performance.
+                        </p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="relative">
+<div class="absolute -left-[41px] top-2 w-5 h-5 bg-[#06141B] rounded-full border-4 border-primary-container"></div>
+<div class="bg-[#06141B] sketch-border p-stack-sm hover:bg-surface-container-low transition-colors duration-300">
+<div class="flex flex-wrap justify-between items-start mb-2 gap-2">
+<div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">AI/ML Intern</h4>
+<span class="font-label-caps text-label-caps text-secondary inline-block mt-1">Employbility.life</span>
+</div>
+<span class="font-label-caps text-label-caps bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full border border-outline-variant">
+                                Aug 2025 - Sep 2025
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+                            Trained predictive models and implemented data pipelines. Conducted exploratory data analysis to drive product decisions. Built and evaluated machine learning algorithms for predictive maintenance and data-driven insights.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="w-full h-px bg-gradient-to-r from-transparent via-outline-variant to-transparent my-stack-lg"></div>
+<!-- Projects Bento Grid -->
+<section class="py-stack-md fade-in-up" id="projects">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">view_quilt</span>
+                Projects
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-md">
+<!-- Project 1 -->
+<div class="bg-[#11212D] sketch-border p-stack-sm flex flex-col group hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+<div class="absolute -right-10 -top-10 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]">mic</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="material-symbols-outlined text-3xl text-primary-container">mic</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined hover:text-primary cursor-pointer text-on-surface-variant">open_in_new</span>
+<span class="material-symbols-outlined hover:text-primary cursor-pointer text-on-surface-variant">code</span>
+</div>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 relative z-10">KisanMitra</h4>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow relative z-10">
+                        An AI-driven platform assisting farmers with crop predictions, market trends, and automated soil analysis.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-4 relative z-10">
+<span class="font-label-caps text-label-caps text-secondary">React Native</span>
+<span class="font-label-caps text-label-caps text-secondary">Python</span>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="bg-[#11212D] sketch-border p-stack-sm flex flex-col group hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+<div class="absolute -right-10 -top-10 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]">insert_chart</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="material-symbols-outlined text-3xl text-primary-container">insert_chart</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined hover:text-primary cursor-pointer text-on-surface-variant">open_in_new</span>
+</div>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 relative z-10">AgriConnect</h4>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow relative z-10">
+                        A decentralized marketplace connecting local farmers directly with bulk buyers, removing middlemen.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-4 relative z-10">
+<span class="font-label-caps text-label-caps text-secondary">MERN Stack</span>
+<span class="font-label-caps text-label-caps text-secondary">GraphQL</span>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="bg-[#11212D] sketch-border p-stack-sm flex flex-col group hover:-translate-y-2 transition-all duration-300 relative overflow-hidden md:col-span-2 lg:col-span-1">
+<div class="absolute -right-10 -top-10 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]">front_hand</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<span class="material-symbols-outlined text-3xl text-primary-container">front_hand</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined hover:text-primary cursor-pointer text-on-surface-variant">code</span>
+</div>
+</div>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 relative z-10">AI Sign Language Translator</h4>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow relative z-10">
+                        Real-time computer vision system translating ASL gestures into text and spoken audio.
+                    </p>
+<div class="flex flex-wrap gap-2 mt-4 relative z-10">
+<span class="font-label-caps text-label-caps text-secondary">TensorFlow</span>
+<span class="font-label-caps text-label-caps text-secondary">OpenCV</span>
+<span class="font-label-caps text-label-caps text-secondary">React</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills & Achievements Asymmetric Layout -->
+<section class="py-stack-md fade-in-up grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-start">
+<!-- Skills -->
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">psychology</span>
+                    Skills
+                </h3>
+<div class="space-y-6">
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2">Programming</h4>
+<div class="flex flex-wrap gap-3">
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">Python</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">Java</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">C++</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2">Software Development</h4>
+<div class="flex flex-wrap gap-3">
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">React</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">React Native</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">Node.js</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">GraphQL</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2">AI/ML</h4>
+<div class="flex flex-wrap gap-3">
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">Machine Learning</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">TensorFlow</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">Computer Vision</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2">Data &amp; Analytics</h4>
+<div class="flex flex-wrap gap-3">
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">SQL</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">Data Pipelines</span>
+</div>
+<div class="border border-outline-variant rounded-full px-4 py-2 flex items-center gap-2 hover:bg-surface-variant transition-colors cursor-default group">
+<span class="material-symbols-outlined text-sm text-[#9BA8AB] group-hover:animate-spin">flare</span>
+<span class="font-label-caps text-label-caps text-on-surface">Data Analysis</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Achievements -->
+<div class="lg:pl-8">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">emoji_events</span>
+                    Achievements
+                </h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 group">
+<span class="material-symbols-outlined text-tertiary-container mt-1 group-hover:scale-125 transition-transform">military_tech</span>
+<div>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">2nd Place Idea Pitching</p>
+<p class="font-body-md text-body-md text-on-surface-variant">University level innovation summit.</p>
+</div>
+</li>
+<li class="flex items-start gap-3 group">
+<span class="material-symbols-outlined text-tertiary-container mt-1 group-hover:scale-125 transition-transform">military_tech</span>
+<div>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Top 10 MIT Hackathon</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Out of 500+ participating teams.</p>
+</div>
+</li>
+<li class="flex items-start gap-3 group">
+<span class="material-symbols-outlined text-tertiary-container mt-1 group-hover:scale-125 transition-transform">military_tech</span>
+<div>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Organizing Hacksprint 5.0</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Led national-level hackathons and technical events.</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest full-width py-stack-md border-t border-dotted border-outline-variant flat no shadows flex flex-col md:flex-row justify-between items-center w-full px-margin-site gap-stack-sm max-w-7xl mx-auto" id="contact">
+<div class="font-headline-sm text-headline-sm text-on-surface mb-4 md:mb-0">
+            © 2024 Sonali TS — Hand-crafted in the late hours.
+        </div>
+<div class="flex flex-col md:flex-row gap-6 items-center">
+<div class="flex gap-4 text-on-surface-variant font-label-caps text-label-caps">
+<a class="hover:text-primary transition-colors" href="tel:+919964308682">+91-9964308682</a>
+<span>|</span>
+<a class="hover:text-primary transition-colors" href="mailto:sonali.ts1203@gmail.com">sonali.ts1203@gmail.com</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Let's Connect:</span>
+<nav class="flex gap-4">
+<!-- Interactions: Social icons rotate 15deg on hover with a squiggly path animation -->
+<a class="text-secondary dark:text-secondary font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-tertiary hover:rotate-12 transition-all group flex items-center justify-center w-8 h-8 rounded hover:bg-surface-variant relative overflow-hidden" href="#">
+                        in
+                        <!-- Squiggle overlay on hover -->
+<div class="absolute inset-0 opacity-0 group-hover:opacity-100 flex items-center justify-center pointer-events-none text-tertiary mix-blend-overlay">~</div>
+</a>
+<a class="text-secondary dark:text-secondary font-label-caps text-label-caps uppercase text-on-surface-variant hover:text-tertiary hover:-rotate-12 transition-all group flex items-center justify-center w-8 h-8 rounded hover:bg-surface-variant relative overflow-hidden" href="#">
+                        gh
+                         <div class="absolute inset-0 opacity-0 group-hover:opacity-100 flex items-center justify-center pointer-events-none text-tertiary mix-blend-overlay">~</div>
+</a>
+</nav>
+</div>
+</div>
+</footer>
+<!-- Simple Intersection Observer for scroll animations -->
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body></html>
